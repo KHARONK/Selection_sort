@@ -1,4 +1,7 @@
-def selection_sort(array):
+
+# sort by release_date or name, duration_ms,popularity,explicit
+def selection_sort(array,sort_key):
+    """Array of dictionary key with user selection key"""
     # step 1: loop from the beginning of the array to the second to last item
     current_index = 0
     while current_index < len(array) - 1:
@@ -10,7 +13,7 @@ def selection_sort(array):
             # step 4:   if the value of the index of the current loop is less
             #           than the value of the item at min_index, update min_index
             #           with the new lowest value index
-            if array[i][1] < array[min_index][1]:
+            if array[i][sort_key] < array[min_index][sort_key]:
                 # update min_index with the new lowest value index
                 min_index = i
             i += 1
@@ -22,7 +25,3 @@ def selection_sort(array):
         current_index += 1
     return array
 
-
-if __name__ == "__main__":
-    array = [(12, 0), (15, 10), (9, 1), (2, 3), (13, 14), (4, 5)]
-    selection_sort([64, 25, 12, 22, 11])
