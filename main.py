@@ -1,5 +1,5 @@
 from dotenv import load_dotenv
-import pprint
+from pprint import pformat
 import spotipy
 from spotipy.oauth2 import SpotifyClientCredentials
 from selection_sort import selection_sort
@@ -9,7 +9,6 @@ spotify_client = spotipy.Spotify(client_credentials_manager=SpotifyClientCredent
 # sort by release_date or name, duration_ms,popularity,explicit
 
 TEMP_DB = {}
-
 
 def fetch_data(search_term):
     """Api request to fetch music"""
@@ -25,7 +24,6 @@ def transform_response(response):
       "explicit": item["explicit"], "name": item["name"], "popularity": item["popularity"]
     }, response)
     return list(prettified)
-
 
 def main():
     # Documentation
@@ -73,9 +71,10 @@ def main():
             else:
               print("no or wrong key entered. Data wont be sorted\n")
             if sorted is not None:
-              print("sorted data\n\n {}".format(sorted))
+              print(pformat(sorted))
             else:
-              pprint.pprint(data)
+              print(pformat(data))
+
         else:
           continue
           # Control C to quit
@@ -86,6 +85,7 @@ def main():
         print(error)
         search_more = False
         return None
+
 
 
 if __name__ == "__main__":
